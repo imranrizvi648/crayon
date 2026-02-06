@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Crayon Costing App</title>
+  
+  <script>
+    if (localStorage.getItem("demo_auth") === "true") {
+      window.location.replace("/");
+    }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; overflow: hidden; }
+    .bg-primary { background-color: #1D4FD9; }
+    .text-primary { color: #1D4FD9; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <div class="flex min-h-screen">
+    <div class="hidden lg:flex w-1/2 relative bg-cover bg-center" style="background-image: url('banner.jpg');">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#FA684E]/60 to-transparent"></div>
+      <div class="absolute bottom-16 left-16 text-white z-10">
+        <h1 class="text-5xl font-extrabold tracking-tight">Crayon <br/>Costing</h1>
+        <p class="mt-4 text-lg opacity-80 font-medium italic">Your Business Intelligence Assistant</p>
+        <div class="mt-6 w-20 h-1.5 bg-white rounded-full"></div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/2 flex flex-col justify-center items-center px-8 md:px-20 py-15 mt-10">
+      <div class="w-full max-w-md">
+        <div class="flex items-center justify-start mb-6 gap-1">
+          <img src="/logo.png" alt="Crayon Logo" class="h-14 w-auto object-contain">
+          <span class="text-4xl font-bold text-gray-900 tracking-tight">Crayon</span>
+        </div>
+
+        <div class="mb-8">
+          <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">Welcome Back</h2>
+          <p class="text-gray-500 mt-1 font-medium text-sm">Enter credentials to access Costing App</p>
+        </div>
+
+        <div class="space-y-5">
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-gray-700 tracking-wider">Email Address</label>
+            <input id="email" type="email" placeholder="admin@crayon.com" 
+                   class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded outline-none transition-all focus:border-[#FA684E] focus:ring-4 focus:ring-[#FA684E]/10">
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-gray-700 tracking-wider">Password</label>
+            <input id="password" type="password" placeholder="••••••••" 
+                   class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded outline-none transition-all focus:border-[#FA684E] focus:ring-4 focus:ring-[#FA684E]/10">
+          </div>
+
+          <button id="loginBtn" 
+                  class="w-full bg-[#f55338] hover:bg-[#FA684E] text-white font-bold py-2.5 rounded shadow-lg shadow-blue-600/20 transform transition active:scale-[0.98] duration-200 mt-2">
+            Login Now
+          </button>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-gray-100">
+          <p class="text-center text-[10px] text-gray-400 uppercase tracking-[2px]">
+            © 2026 Crayon Costing System • Secure Preview
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    const handleLogin = () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const VALID_EMAIL = "admin@crayon.com"; 
+      const VALID_PASSWORD = "Admin@123456";          
+
+      if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+        const btn = document.getElementById("loginBtn");
+        btn.innerText = "Logging in...";
+        btn.disabled = true; // Multiple clicks se bachne ke liye
+        
+        localStorage.setItem("demo_auth", "true");
+        
+        setTimeout(() => {
+          // window.location.replace use karein taaki back button se issue na ho
+          window.location.replace("/");
+        }, 500);
+      } else {
+        alert("❌ Invalid Credentials!");
+      }
+    };
+
+    document.getElementById("loginBtn").onclick = handleLogin;
+
+    document.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") handleLogin();
+    });
+  </script>
+
+</body>
+</html>
