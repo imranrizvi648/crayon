@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "http://203.130.9.165:3000/",
+      "permanent": true
+    },
+    {
+      "source": "/login.html",
+      "destination": "http://203.130.9.165:3000/",
+      "permanent": true
+    }
+  ]
+}
